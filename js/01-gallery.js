@@ -20,3 +20,23 @@ const markup = galleryItems.map(item =>
 imageGallery.insertAdjacentHTML('beforeend', markup)
 
 console.log(basicLightbox)
+
+imageGallery.addEventListener("click",onClick)
+
+function onClick(event) {
+    event.preventDefault();
+    const instance = basicLightbox.create(
+        `<img src="${event.target.dataset.source}" width="800" heigth="600">`,
+        {   onShow: instance => { document.addEventListener('keydown', escape); },
+            onClose: instance => { document.removeEventListener('keydown', escape); },
+        })
+    instance.show()
+
+    function escape(event) {
+        if (event.code !== 'Escape') {
+            return
+        }
+        instance.close();
+    }
+    console.log(event.code)
+}
