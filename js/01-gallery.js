@@ -19,9 +19,7 @@ const markup = galleryItems.map(item =>
 
 imageGallery.insertAdjacentHTML('beforeend', markup)
 
-console.log(basicLightbox)
-
-imageGallery.addEventListener("click",onClick)
+imageGallery.addEventListener("click", onClick)
 
 function onClick(event) {
     event.preventDefault();
@@ -38,5 +36,4 @@ function onClick(event) {
         }
         instance.close();
     }
-    console.log(event.code)
 }

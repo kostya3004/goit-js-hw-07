@@ -6,17 +6,16 @@ console.log(galleryItems);
 const imageGallery = document.querySelector(".gallery")
 
 const markup = galleryItems.map(item =>
-    `<div class="gallery__item">
-  <a class="gallery__link" href="${item.original}">
-    <img
-      class="gallery__image"
-      src="${item.preview}"
-      data-source="${item.original}"
-      alt="${item.description}"
-    />
-  </a>
-</div>`).join("")
+    `<a class="gallery__item" href="${item.original}">
+  <img class="gallery__image" src="${item.preview}" alt="${item.description}" />
+</a>`).join("")
 
 imageGallery.insertAdjacentHTML('beforeend', markup)
+imageGallery.addEventListener("click", onClick)
 
 console.log(SimpleLightbox)
+
+function onClick(event) {
+    event.preventDefault();
+    var lightbox = new SimpleLightbox('.gallery a', {scrollZoom:false, captionsData:"alt", captionDelay:250});
+}
